@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-size: 18px;          
+            background-color: gainsboro;
+            margin: 15px;
+            padding: 10px;
+            
+        }
+    </style>
+ 
+</head>
+<body>
+   
+    <script>
+        function Employee(id,name){
+            this.id=id;
+            this.name=name;
+        }
+        Employee.prototype.position=function(){
+            return("Software Engineer.");
+        }
+        function Programmer(id,name,salary){
+            Employee.call(this,id,name);
+            this.salary=salary;
+
+        }
+        Programmer.prototype=Object.create(Employee.prototype);
+        Programmer.prototype.constructor=Programmer;
+        var emp=new Programmer(1279033.,'Jahidul Hasan.','45000 Taka.');
+        document.write(`ID : ${emp.id} <br>\n Name : ${emp.name} <br>\nPosition : ${emp.position()}<br>\n Salary : ${emp.salary}`)
+    </script>
+    
+</body>
+</html>
