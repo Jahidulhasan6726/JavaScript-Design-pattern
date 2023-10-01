@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>javascript function</title>
+      <style>
+	body{
+		margin: 15px;				
+		padding: 10px;
+	}
+      </style>
+ </head>
+<body>
+  <div>
+	<p style="color: rgb(68, 246, 71);">1.Literal </p>
+	<p id="literal"></p>
+  </div>
+  <div>
+	<p style="color: rgb(68, 246, 71);">2.Prototype </p>
+	<p id="prototype"></p>
+  </div><div>
+	<p style="color: rgb(68, 246, 71);">3.Factory function</p>
+	<p id="factory"></p>
+  </div><div>
+	<p style="color: rgb(68, 246, 71);">4.Namespace container</p>
+	<p id="namespace"></p>
+  </div>
+<script>
+function logMsg(msg){
+	document.getElementById("literal")
+	.innerHTML += msg + "<br>"+
+	"========================<br>";
+	}
+//literal
+var students={
+	id:34423,
+	name:'Tusher Ahammed',
+getInfo:function(){
+   return this.id + " : " + this.name;
+	 }
+  }
+logMsg(students.getInfo());
+
+//prototype
+function prototypeFunction(msg){
+	document.getElementById("prototype")
+	.innerHTML += msg + "<br>"+
+	"========================<br>";
+	}
+function trainee(id,name){
+		this.id=id;
+		this.name=name;
+	}
+ trainee.prototype.getInfo=function(){
+			return this.id + " : " +this.name;
+		}		
+ var t1 =new trainee(234234,"jahidul hasan");
+ prototypeFunction(t1.getInfo());
+
+//Factory pattern
+function factoryFunction(msg){
+	document.getElementById("factory")
+	.innerHTML += msg + "<br>"+
+	"========================<br>";
+	}
+function worker(id,name,salary){
+		var ob={};
+		ob.id=id;
+		ob.name=name;
+		ob.salary=salary;
+		ob.getInfo=function(){	
+		return this.id + " : "+this.name + " : "+ this.salary;
+		}
+		  return ob;
+	}
+  var emp= new worker(2423,"Rakibul Islam",25000);
+  factoryFunction(emp.getInfo());
+   
+//Namespace
+function namespaceFunction(msg){
+	document.getElementById("namespace")
+	.innerHTML += msg + "<br>"+
+	"========================<br>";
+	}
+  var WADA56 = WADA56 || {};
+   WADA56.trainee=function(id,name,age){
+		this.id=id;
+		this.name=name;
+		this.age=age;
+	this.getInfo=function(){	
+		return this.id + " : "+ this.name +" : " +this.age;
+			
+		}
+	}
+ var programmer= new WADA56.trainee(1279033,'Mojibur Rahman',26);
+ namespaceFunction(programmer.getInfo());
+  </script>
+ </body>
+</html>
